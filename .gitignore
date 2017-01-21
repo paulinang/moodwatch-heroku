@@ -1,5 +1,4 @@
 env/
 *.pyc
 secrets.sh
-obsolete_code/
-htmlcov/
+*.DS_Store
