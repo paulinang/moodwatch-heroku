@@ -50,38 +50,14 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/register', methods=['POST'])
-def process_registration():
-    """Creates new user account"""
-
-    username = request.form.get('new-username')
-    password = request.form.get('new-password')
-    hashed = hashpw(str(password), gensalt())
-    email = request.form.get('email')
-
-    # if there doesn't exist a record in the database with that email or username
-    if db.session.query(User).filter(User.email == email).first():
-        flash('An account with that email already exists')
-    elif db.session.query(User).filter(User.username == username).first():
-        flash('That username has already been taken')
-    else:
-        user = User(username=username, email=email, password=hashed)
-        db.session.add(user)
-        db.session.commit()
-        flash('Account successfully created.')
-
-    return redirect('/')
-
-
 @app.route('/login', methods=['POST'])
 def process_login():
     """Validates and logs in to user account"""
 
     username = request.form.get('username')
-    password = request.form.get('password')
     user = User.query.filter_by(username=username).first()
 
-    if not (user) or (hashpw(str(password), str(user.password)) != user.password):
+    if not user:
         flash('Username and/or password invalid')
         return redirect('/')
     else:

@@ -6,8 +6,8 @@
             <div class='col-xs-12 col-md-4'>
                 <select id='client-to-view' name='client-id'>
                     <option selected='selected' disabled>Select patient</option>
-                    {% for client in pro.professional.sort_clients().active %}
-                        <option value='{{ client.user_id }}'>{{ client.username }}</option>
+                    {% for contract in pro.professional.contracts %}
+                        <option value='{{ contract.client.user_id }}'>{{ contract.client.username }}</option>
                     {% endfor %}
             </select></h4>
             </div>

@@ -21,16 +21,24 @@
 
           <div class='about'>
             <div class='user' id='loki'>
-              <button type="button" class="btn btn-outline-primary" data-user="loki"><h4>Loki</h4></button>
+              <form id='login' action='login' method='POST'>
+                <input id='loki-login' type='hidden' name='username' value='loki'>
+                <button type="submit" class="btn btn-outline-primary"><h4>Loki</h4></button>
+              </form>
               <p>Cyclic moods to simulate bipolar disorder</p>
-
             </div><!--
-            --><div class='user' id='Thor'>
-              <button type="button" class="btn btn-outline-primary" data-user="thor"><h4>Thor</h4></button>
+            --><div class='user' id='thor'>
+              <form id='login' action='login' method='POST'>
+                <input id='thor-login' type='hidden' name='username' value='thor'>
+                <button type="submit" class="btn btn-outline-primary"><h4>Thor</h4></button>
+              </form>
               <p>Moods that change with different medications</p>
             </div><!--
             --><div class='user' id='odin'>
-              <button type="button" class="btn btn-outline-primary" data-user="odin"><h4>Odin</h4></button>
+              <form id='login' action='login' method='POST'>
+                <input id='odin-login' type='hidden' name='username' value='odin'>
+                <button type="submit" class="btn btn-outline-primary"><h4>Odin</h4></button>
+              </form>
               <p>Professional user with access to patient logs</p>
             </div>
           </div>

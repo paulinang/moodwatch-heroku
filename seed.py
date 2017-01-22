@@ -35,21 +35,16 @@ def load_users():
                 password=hashpw('jormungand', gensalt()),
                 email='loki@jotunheim.com')
 
-    tyr = User(username='tyr',
-               password=hashpw('fenrirBITme', gensalt()),
-               email='tyr@asgard.com')
-
-    heimdall = User(username='heimdall',
-                    password=hashpw('Igot9MUMS', gensalt()),
-                    email='heimdall@bifrost.com')
+    thor = User(username='thor',
+                password=hashpw('mjolnir', gensalt()),
+                email='thor@asgard.com')
 
     odin = User(username='odin',
-                password=hashpw('sleipnirISMYride', gensalt()),
+                password=hashpw('sleipnir', gensalt()),
                 email='odin@valhalla.com')
 
     db.session.add(loki)
-    db.session.add(tyr)
-    db.session.add(heimdall)
+    db.session.add(thor)
     db.session.add(odin)
 
     db.session.commit()
@@ -60,9 +55,8 @@ def load_professionals():
 
     Professional.query.delete()
 
-    for i in range(3, 5):
-        pro = Professional(user_id=i)
-        db.session.add(pro)
+    pro = Professional(user_id=3)
+    db.session.add(pro)
 
     db.session.commit()
 
@@ -71,11 +65,10 @@ def load_contracts():
     print 'Contracts'
     Contract.query.delete()
 
-    heimdallTyr = Contract(pro_id=3, client_id=2, active=True)
-    odinTyr = Contract(pro_id=4, client_id=2, active=True)
-    odinLoki = Contract(pro_id=4, client_id=1, active=True)
+    odinThor = Contract(pro_id=3, client_id=2, active=True)
+    odinLoki = Contract(pro_id=3, client_id=1, active=True)
 
-    db.session.add_all([heimdallTyr, odinTyr, odinLoki])
+    db.session.add_all([odinThor, odinLoki])
     db.session.commit()
 
 
@@ -244,6 +237,6 @@ if __name__ == "__main__":
     load_users()
     load_professionals()
     load_contracts()
-    load_prescriptions()
-    load_days()
-    load_events()
+    # load_prescriptions()
+    # load_days()
+    # load_events()
