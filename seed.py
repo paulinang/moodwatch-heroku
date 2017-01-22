@@ -155,13 +155,6 @@ def load_events():
         db.session.add(event_day)
         db.session.commit()
 
-    event = Event(user_id=1,
-                  event_name='Ate an amazing sandwich',
-                  overall_mood='8')
-    db.session.add(event)
-    db.session.commit()
-    event.associate_day(user.days[4].date)
-
 
 ########################################################
 ################ HELPER FUNCTIONS ######################
@@ -238,4 +231,4 @@ if __name__ == "__main__":
     load_contracts()
     load_prescriptions()
     load_days()
-    # load_events()
+    load_events()
