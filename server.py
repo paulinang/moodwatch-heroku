@@ -272,7 +272,7 @@ def get_logs_for_day():
     day = Day.query.filter_by(user_id=session['user_id'], date=requested_date).first()
     if day:
         day_info = day.get_info_dict()
-        day_html = '<h3>On this day, you rated your moods: </h3><ul>'
+        day_html = '<h3>On this day, you rated your mood: </h3><ul>'
 
         if day_info.get('max_mood'):
             day_html += '<li>Highest at {}</li>'.format(day_info['max_mood'])
@@ -396,7 +396,7 @@ def get_client_log_overview():
                      'pointBorderColor': 'rgba(0,0,0,0)',
                      'data': roll_avg_dataset})
 
-    return jsonify({'datasets': datasets, 'min_ate': datetime.strftime(client.days[0].date, '%Y-%m-%d')})
+    return jsonify({'datasets': datasets, 'min_date': datetime.strftime(client.days[0].date, '%Y-%m-%d')})
 
 
 @app.route('/day_chart.json')
@@ -408,7 +408,6 @@ def get_day_logs():
     date = datetime.strptime(date_str, '%Y-%m-%d').date()
     day = Day.query.filter_by(user_id=session['user_id'], date=date).first()
     datasets = []
-
     if day:
         for event in day.events:
             # event_dataset.append({'x': date_str, 'y': event.overall_mood})

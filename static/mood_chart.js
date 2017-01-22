@@ -45,7 +45,7 @@ function initializeOptions(minDate, maxDate) {
                         display: false
                     }
                 };
-    return options
+    return options;
 }
 
 
