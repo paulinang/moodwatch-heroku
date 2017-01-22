@@ -111,18 +111,18 @@ def load_days():
     dates, overall_moods = rand_day_moods()
 
     # give tyr random moods
-    for i, date in enumerate(dates):
-        overall_mood = int(overall_moods[i])
-        day = Day(user_id=2,
-                  date=date,
-                  overall_mood=overall_mood)
-        db.session.add(day)
+    # for i, date in enumerate(dates):
+    #     overall_mood = int(overall_moods[i])
+    #     day = Day(user_id=2,
+    #               date=date,
+    #               overall_mood=overall_mood)
+    #     db.session.add(day)
 
     # create a list of numbers to randomly choose from
     # steps up/down from overall_mood to create min/max
     MOOD_STEP = range(5, 30, 5)
 
-    overall_moods = [int(15 * sin(x * 0.1)) for x in range(0, 1001)]
+    overall_moods = [int(15 * sin(x * 0.1)) for x in range(0, 101)]
 
     # give loki moods based on sine wave
     for i, date in enumerate(dates):
@@ -207,7 +207,7 @@ def get_meds_from_txt(txt_file):
     return drugs
 
 
-def rand_day_moods(num_days=1000, tz='US/Pacific'):
+def rand_day_moods(num_days=100, tz='US/Pacific'):
     """ Creates a list of days with random moods """
 
     ca_tz = timezone(tz)
@@ -215,8 +215,8 @@ def rand_day_moods(num_days=1000, tz='US/Pacific'):
     first_day = most_recent - timedelta(days=num_days-1)
 
     random_moods = pd.Series((np.random.rand(num_days) * 20) - (20/2))
-    offsets = [(x * .03 - 15) for x in range(1, 1001)]
-    sine_nums = [(int(5) * sin(x * 0.1)) for x in range(1, 1001)]
+    offsets = [(x * .03 - 15) for x in range(1, num_days + 1)]
+    sine_nums = [(int(5) * sin(x * 0.1)) for x in range(1, num_days + 1)]
     weird_moods = random_moods + sine_nums + offsets
     mood_list = list(weird_moods)
 
@@ -238,5 +238,5 @@ if __name__ == "__main__":
     load_professionals()
     load_contracts()
     # load_prescriptions()
-    # load_days()
+    load_days()
     # load_events()
