@@ -396,7 +396,7 @@ def get_client_log_overview():
                      'pointBorderColor': 'rgba(0,0,0,0)',
                      'data': roll_avg_dataset})
 
-    return jsonify({'datasets': datasets, 'min_date': datetime.strftime(client.days[0].date, '%Y-%m-%d')})
+    return jsonify({'datasets': datasets, 'min_date': datetime.strftime(client.days[-1].date, '%Y-%m-%d')})
 
 
 @app.route('/day_chart.json')
