@@ -1,5 +1,6 @@
 html, body, .container-fluid, .row, .left{
   height: 100%;
+  overflow: scroll;
 }
 
 
