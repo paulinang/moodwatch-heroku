@@ -254,11 +254,16 @@ db.Index('event_day', EventDay.event_id, EventDay.day_id, unique=True)
 def connect_to_db(app, dbname):
     """Connect the database to Flask app."""
 
-    # Configure to use our PstgreSQL database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///%s' % dbname
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    db.app = app
-    db.init_app(app)
+    def connect_to_db(app, db_uri=None):
+        """Connect our application to our database."""
+
+        app.config['SQLALCHEMY_DATABASE_URI'] = db_uri or 'postgres:///%s' % dbname
+
+        # Configure to use our PstgreSQL database
+        # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///%s' % dbname
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        db.app = app
+        db.init_app(app)
 
 
 def example_data():

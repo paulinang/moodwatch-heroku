@@ -464,8 +464,8 @@ if __name__ == "__main__":
     # point that we invoke the DebugToolbarExtension
     app.debug = False
 
-    connect_to_db(app, 'asgard_db')
-
+    # connect_to_db(app, 'asgard_db')
+    connect_to_db(app, os.environ.get("DATABASE_URL", 'asgard_db'))
     # Use the DebugToolbar
     DebugToolbarExtension(app)
 
