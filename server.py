@@ -10,6 +10,7 @@ from model import connect_to_db, db, User, Drug, Prescription, Day, Event
 from mood_analysis import analyze_moods
 import numpy as np
 import os
+import seed
 
 app = Flask(__name__)
 
@@ -466,6 +467,17 @@ if __name__ == "__main__":
 
     # connect_to_db(app, 'asgard_db')
     connect_to_db(app, os.environ.get("DATABASE_URL"))
+    db.drop_all()
+    db.create_all()
+
+    # Import different types of data
+    seed.load_drugs()
+    seed.load_users()
+    seed.load_professionals()
+    seed.load_contracts()
+    seed.load_prescriptions()
+    seed.load_days()
+    seed.load_events()
     # Use the DebugToolbar
     DebugToolbarExtension(app)
 
