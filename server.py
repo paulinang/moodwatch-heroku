@@ -14,7 +14,8 @@ import os
 app = Flask(__name__)
 
 # Required to use Flask sessions and the debug toolbar
-app.secret_key = "ABC"
+SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "ABCDEF")
+app.secret_key = SECRET_KEY
 
 # Deals with undefined variables passed to jinja
 app.jinja_env.undefined = StrictUndefined
@@ -473,4 +474,6 @@ if __name__ == "__main__":
 
     # Uses heroku random port
     PORT = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=PORT)
+    DEBUG = "NO_DEBUG" not in os.environ
+
+    app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
