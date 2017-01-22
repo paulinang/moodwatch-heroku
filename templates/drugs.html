@@ -79,7 +79,7 @@
 
     <script>
         $('#user-specific-page').html('<li><a href=\'/drugs\'>Medications Database</a></li>');
-        $('.drug-record').on('dblclick', function(evt){
+        $('.drug-record').on('click', function(evt){
             var genericName = this.children[0].innerHTML;
             $('#generic-name').html(genericName.charAt(0).toUpperCase() + genericName.slice(1));
             $('#brand-name').html('Brand Name(s): ' + this.children[1].innerHTML);
