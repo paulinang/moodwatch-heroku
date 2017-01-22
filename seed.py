@@ -109,13 +109,13 @@ def load_days():
 
     dates, overall_moods = rand_day_moods()
 
-    # give tyr random moods
-    # for i, date in enumerate(dates):
-    #     overall_mood = int(overall_moods[i])
-    #     day = Day(user_id=2,
-    #               date=date,
-    #               overall_mood=overall_mood)
-    #     db.session.add(day)
+    # give thor random moods
+    for i, date in enumerate(dates):
+        overall_mood = int(overall_moods[i])
+        day = Day(user_id=2,
+                  date=date,
+                  overall_mood=overall_mood)
+        db.session.add(day)
 
     # create a list of numbers to randomly choose from
     # steps up/down from overall_mood to create min/max
@@ -144,6 +144,19 @@ def load_events():
 
     user = User.query.get(1)
     nums = [1, -1, -2, 2]
+    for x, i in enumerate(range(0, len(user.days), 3)):
+        day = user.days[i]
+        event = Event(user_id=1,
+                      event_name='event %s' % x,
+                      overall_mood=(day.overall_mood + choice(nums)))
+        db.session.add(event)
+        db.session.commit()
+        event_day = EventDay(event_id=event.event_id, day_id=day.day_id)
+        db.session.add(event_day)
+        db.session.commit()
+
+    user = User.query.get(2)
+    nums = [3, -5, -3, 8]
     for x, i in enumerate(range(0, len(user.days), 3)):
         day = user.days[i]
         event = Event(user_id=1,
