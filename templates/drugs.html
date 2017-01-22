@@ -49,8 +49,8 @@
                         <div class="form-group">
                             <label for='client-name'>Client:</label>
                             <select id='client' name='clientId'>
-                                {% for client in pro.professional.sort_clients().active %}
-                                 <option value='{{ client.user_id }}'>{{ client.username }}</option>
+                                {% for contract in pro.professional.contracts %}
+                                 <option value='{{ contract.client.user_id }}'>{{ contract.client.username }}</option>
                                  {% endfor %}
                             </select>
                         </div>
