@@ -15,7 +15,7 @@ body {
   background-color: rgba(0,0,0,.4);
 }
 
-h1,, h4, p {
+h1, h4, p, .btn-primary {
   font-family: lato;
   margin: 10px;
 }
@@ -49,6 +49,7 @@ a {
   border-radius: 10px;
   display: inline-block;
   width: 30%;
+  height: 10em;
   margin: 5px 1.5%;
   background-color: rgba(265,265,265,0.7);
 }
